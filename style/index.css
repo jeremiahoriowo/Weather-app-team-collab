@@ -468,6 +468,12 @@
     font-weight: var(--font-weight-bold);
     color: var(--color-white);
   }
+  .btn-outline {
+    outline-width: 1px;
+    outline-style: solid;
+    outline-offset: 2px;
+    outline-color:#4657d7;
+  }
 }
 @property --tw-scale-x {
   syntax: "*";

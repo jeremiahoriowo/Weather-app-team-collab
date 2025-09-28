@@ -11,13 +11,7 @@
 }
 
 @layer components {
-  .weather-cards {
-    @apply flex flex-col justify-between flex-1 bg-[#25253f] rounded-lg;
-  }
-  .weather-cards-text {
-    @apply text-sm font-medium text-white;
-  }
-  .weather-h2 {
-    @apply text-3xl text-white font-bold
+  .the-shadow {
+    box-shadow: 3px 3px 10px black;
   }
 }
