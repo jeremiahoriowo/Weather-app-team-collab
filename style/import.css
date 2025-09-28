@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Bricolage";
+  src: url(../assets/fonts/Bricolage_Grotesque/static/BricolageGrotesque-Bold.ttf)
+}
+
+@font-face {
+  font-family: "DM-sans";
+  src: url(../assets/fonts/DM_Sans/static/DMSans-Light.ttf);
+}
+
+@layer components {
+  .weather-cards {
+    @apply flex flex-col justify-between flex-1 bg-[#25253f] rounded-lg;
+  }
+  .weather-cards-text {
+    @apply text-sm font-medium text-white;
+  }
+  .weather-h2 {
+    @apply text-3xl text-white font-bold
+  }
+}
