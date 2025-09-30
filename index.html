@@ -92,7 +92,8 @@
 
 		<!-- The input field on the Hero view -->
 		<form class="flex sm:flex-row flex-col items-center justify-center gap-2.5 mt-10">
-			<div class="flex flex-col relative w-[45%]">
+			<div class="flex flex-col relative w-full">
+
 				<div class="flex items-center gap-2.5 w-full max-sm:w-full bg-[#25253f] peer-[focus]: rounded-lg px-4 h-11">
 					<img src="assets/images/icon-search.svg" class="h-4">
 					<input type="text" placeholder="Search for a place" class="text-sm text-white text-[100%] outline-none bg-transparent focus:bg-[] w-full group h-full max-sm:focus:py-1 sm:flex-1">
@@ -106,6 +107,7 @@
 					<div class="rounded-md px-2.5 py-2 text-white text-md item-start cursor-pointer hover:bg-[#3c3b5d]" id="js-search-suggestions">Surulere</div>
 
 				</div>
+
 			</div>
 			<button type="submit" class="text-white focus-visible:btn-outline max-sm:w-full py-2.5 px-6 rounded-lg cursor-pointer bg-[#4657d7] transition-all hover:bg-[#2739bd]" id="submit">Search</button>
 		</form>
