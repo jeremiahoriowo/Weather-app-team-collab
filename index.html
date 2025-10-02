@@ -15,17 +15,75 @@
 	<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
 </head>
-<body class="bg-[#020d2e] pb-20">
-	
-	<header class="box-border flex justify-between items-center h-20 w-full px-8 md:px-20 mt-4">
+<body class="bg-[#020d2e] pb-15 max-sm:pb-10">
+	<header class="box-border font-[DM-sans] flex justify-between items-center h-20 w-full px-8 md:px-20 mt-4">
+
 		<a class="" href="index.html">
 			<img src="assets/images/logo.svg" class="my-auto h-8 lg:h-8"/>
 		</a>
-		<button class="flex items-center gap-2 max-[320px]:py-1.5 max-[320px]:px-3 py-2.5 px-3.5 bg-[#25253f] rounded-lg"> 
-			<img src="assets/images/icon-units.svg" class=" order-1 h-3"/> 
-			<img src="assets/images/icon-dropdown.svg" class="scale-85 order-3"/> 
-			<p class="text-white order-2 text-xs">Units</p> 
-		</button>
+		<div class="flex gap-4 flex-col">
+
+			<button class="flex items-center gap-2 max-[320px]:py-1.5 max-[320px]:px-3 py-2 px-3.5 bg-[#25253f] rounded-lg cursor-pointer hover:bg-[#3c3b5d] transition-all relative" data-dropdown="units"> 
+				<img src="assets/images/icon-units.svg" class="order-1 h-3.5 transition-all duration-1000 rotate-0" id="wheel-units"/> 
+				<img src="assets/images/icon-dropdown.svg" class="scale-85 order-3"/> 
+				<p class="text-white order-2 text-sm">Units</p> 
+			</button>
+
+			<!-- Measurement dropdown -->
+			<div class="flex flex-col w-[240px] p-2.5 gap-3.5 rounded-lg absolute top-[84px] right-[80px] bg-[#25253f] border border-gray-700 z-50 hidden" id="js-switch-dropdown">
+
+				<!-- text saying Switch to imperial -->
+				<p class="font-medium text-gray-100 text-md">Switch to Imperial</p>
+				<!-- Measurements -->
+				<div class="flex flex-col gap-2">
+					<!-- Temperature -->
+					<div class="flex flex-col border-b border-b-gray-600">
+						<p class="text-sm text-gray-400 mb-1 pl-1">Temperature</p>
+						<div class="flex flex-col gap-0.5">
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-2.5 mb-1 bg-[#3c3b5d] rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75] hover:rounded-md">
+								<p class="self-start text-md font-medium text-white">Celcius (&deg;C)</p>
+								<img src="assets/images/icon-checkmark.svg">
+							</button>
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-2.5 mb-2 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75] hover:rounded-md">
+								<p class="self-start text-md font-medium text-white">Fahrenheit (&deg;F)</p>
+								<img src="assets/images/icon-checkmark.svg" class="hidden">
+							</button>
+						</div>
+					</div>
+					<!-- Wind speed -->
+					<div class="flex flex-col border-b border-b-gray-600">
+						<p class="text-sm text-gray-400 mb-1 pl-1">Wind Speed</p>
+						<div class="flex flex-col gap-0.5">
+							<button class="flex items-center justify-between w-full gap-2 rounded-md py-2 px-2.5 mb-1 bg-[#3c3b5d]  hover:cursor-pointer">
+								<p class="self-start text-md font-medium text-gray-100">km/h</p>
+								<img src="assets/images/icon-checkmark.svg">
+							</button>
+							<button class="flex items-center justify-between w-full gap-2 py-1.5 px-3 mb-2 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75]">
+								<p class="self-start text-md font-medium text-gray-100">mph</p>
+								<img src="assets/images/icon-checkmark.svg" class="hidden">
+							</button>
+						</div>
+					</div>
+					<!-- Precipitations -->
+					 <div class="flex flex-col">
+						<p class="text-sm text-gray-400 mb-1 pl-1">Precipation</p>
+						<div class="flex flex-col gap-0.5">
+							<button class="flex items-center justify-between w-full gap-2 rounded-md py-2 px-2.5 mb-1 bg-[#3c3b5d]  hover:cursor-pointer">
+								<p class="self-start text-md font-medium text-gray-100">Millimeters (mm)</p>
+								<img src="assets/images/icon-checkmark.svg">
+							</button>
+							<button class="flex items-center justify-between w-full gap-2 py-1.5 px-3 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75]">
+								<p class="self-start text-md font-medium text-gray-100">Inches (In)</p>
+								<img src="assets/images/icon-checkmark.svg" class="hidden">
+							</button>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
 	</header>
 
 	<!-- The Main section of the page -->
@@ -34,21 +92,35 @@
 
 		<!-- The input field on the Hero view -->
 		<form class="flex sm:flex-row flex-col items-center justify-center gap-2.5 mt-10">
-			<div class="flex items-center gap-2.5 w-[45%] max-sm:w-full bg-[#25253f] rounded-lg px-4 py-2.5">
-				<img src="assets/images/icon-search.svg" class="h-4">
-				<input type="text" placeholder="Search for a place" class="text-sm text-white text-[100%] outline-none bg-transparent w-full pr-1.5 max-sm:focus:py-1">
+			<div class="flex flex-col relative w-full">
+
+				<div class="flex items-center gap-2.5 w-full max-sm:w-full bg-[#25253f] peer-[focus]: rounded-lg px-4 h-11">
+					<img src="assets/images/icon-search.svg" class="h-4">
+					<input type="text" placeholder="Search for a place" class="text-sm text-white text-[100%] outline-none bg-transparent focus:bg-[] w-full group h-full max-sm:focus:py-1 sm:flex-1">
+				</div>
+				
+				<!-- Search suggestion box -->
+				<div class="flex flex-col gap-1 rounded-lg box-border border border-gray-700 px-[6px] py-1.5 w-full bg-[#25253f] absolute top-[52px] z-40 hidden" id="suggestion-box">
+					<!-- Javascript loaded weather locations -->
+					<div class="rounded-md px-2.5 py-2 text-white text-md item-start hover:bg-[#3c3b5d] cursor-pointer" id="js-search-suggestions">Uyo</div>
+					<div class="rounded-md px-2.5 py-2 text-white text-md item-start cursor-pointer hover:bg-[#3c3b5d]" id="js-search-suggestions">Ojuolegba</div>
+					<div class="rounded-md px-2.5 py-2 text-white text-md item-start cursor-pointer hover:bg-[#3c3b5d]" id="js-search-suggestions">Surulere</div>
+
+				</div>
+
 			</div>
-			<button type="submit" class="text-white focus-visible:btn-outline max-md:w-full py-2.5 px-6 rounded-lg bg-[#4657d7]">Search</button>
+			<button type="submit" class="text-white focus-visible:btn-outline max-sm:w-full py-2.5 px-6 rounded-lg cursor-pointer bg-[#4657d7] transition-all hover:bg-[#2739bd]" id="submit">Search</button>
 		</form>
 
 		<!-- Grid-like layout of weather features -->
-		<div class="flex gap-8 md:gap-4 max-md:flex-col w-full justify-between mt-10 md:flex-row">
+		<div class="flex gap-10 md:gap-5 max-md:flex-col w-full justify-between mt-10 md:flex-row">
+
 			<!-- (Left-side) -->
 			<div class="flex flex-col gap-5">
 				<!-- Blob image/ absolute positioning section -->
-				<div class="relative flex flex-col mb-[-10px]">
-					<img src="./assets/images/bg-today-large.svg" class=" h-80 w-full hidden md:block mb-4">
-					<img src="assets/images/bg-today-small.svg" class="w-full md:hidden">
+				<div class="relative flex flex-col max-sm:mb-[8px] items-start">
+					<img src="./assets/images/bg-today-large.svg" class="self-stretch mt-[-12px] my-clip h-80  hidden md:block">
+					<img src="assets/images/bg-today-small.svg" class="my-clip self-stretch w-full md:hidden">
 
 					<!-- Items made to position absolute -->
 					<div class="flex flex-col md:flex-row items-center max-[320px]:gap-10 gap-12 box-border max-md:p-10 md:p-2 h-auto w-full absolute max-sm:left-0 max-sm:right-0 max-md:top-0 md:top-22">
@@ -58,11 +130,10 @@
 						</div>
 						<div class="flex max-md:justify-between gap-5 items-center md:w-2xl md:items-start">
 							<img src="assets/images/icon-sunny.webp" class="w-30">
-							<h1 class="md:mt-5 text-7xl text-white font-[DM sans] font-bold italic">68&deg;</h1>
+							<h1 class="md:mt-6 text-7xl text-white font-[DM sans] font-bold italic">68&deg;</h1>
 						</div>
 					</div>
 				</div>
-				
 				<!-- The weather mode cards -->
 				<div class="grid grid-cols-2 gap-4 md:grid-cols-4">
 					<div class="flex flex-col justify-between p-4 gap-y-4 flex-1 bg-[#25253f] rounded-xl">
@@ -84,9 +155,8 @@
 				</div>
 
 				<!-- Daily forecast template -->
-				<div class="flex flex-col">
+				<div class="flex flex-col max-sm:mt-4">
 					<p class="text-lg font-semibold mb-4 text-white">Daily forecast</p>
-
 					<div class="grid grid-cols-3 md:grid-cols-7 gap-3.5 text-white ">
 						<div class="p-4 rounded-xl item-shadows bg-[#25253f]">
 							<p class="text-center">Tue</p>
@@ -148,16 +218,48 @@
 				</div>
 			</div>
 
-			<!-- (Right side) Hourly forecast template-->
+			<!-- (Right side) [Hourly forecast] template-->
 			<div class="flex flex-col rounded-3xl gap-4 p-5 md:w-[85%] bg-[#25253f]">
+				<!-- The days btn -->
 				<div class="flex justify-between items-center ">
+
 					<p class="text-lg font-semibold text-white">Hourly forecast</p>
-					<button class="flex items-center text-sm gap-2 px-4 py-2 rounded-md bg-[#3c3b5d]">
-						<p class="text-white">Tuesday</p>
-						<img class="h-2" src="assets/images/icon-dropdown.svg">
-					</button>
+
+					<div class="flex flex-col relative">
+						<button class="cursor-pointer flex items-center text-sm gap-2 px-4 py-2 rounded-md bg-[#3c3b5d]" id="js-day-dropdown-button" >
+							<p class="text-white" id="selected-day">-</p>
+							<img class="h-2" src="assets/images/icon-dropdown.svg">
+						</button>
+
+						<!-- The Day dropdown -->
+						<div class="flex flex-col w-[240px] p-2.5 gap-1.5 rounded-lg absolute top-[50px] right-[0px] bg-[#25253f] border border-gray-700 z-50 hidden" id="js-day-dropdown">
+
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75] hover:rounded-md" id="specific-day">
+								<p class="self-start text-md font-medium text-white">Monday</p>
+							</button>
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75] hover:rounded-md bg-[#3c3b5d]" id="specific-day">
+								<p class="self-start text-md font-medium text-white">Tuesday</p>
+							</button>
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75] hover:rounded-md" id="specific-day">
+								<p class="self-start text-md font-medium text-white">Wednesday</p>
+							</button>
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75] hover:rounded-md" id="specific-day">
+								<p class="self-start text-md font-medium text-white">Thursday</p>
+							</button>
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75] hover:rounded-md" id="specific-day">
+								<p class="self-start text-md font-medium text-white">Friday</p>
+							</button>
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75] hover:rounded-md" id="specific-day">
+								<p class="self-start text-md font-medium text-white">Saturday</p>
+							</button>
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75] hover:rounded-md" id="specific-day">
+								<p class="self-start text-md font-medium text-white">Sunday</p>
+							</button>
+						</div>
+					</div>
 				</div>
 
+				<!-- The Day hourly forecast -->
 				<div class="flex flex-col gap-4">
 					<div class="flex rounded-md bg-[#2f2f49] items-center justify-between px-2.5 py-2">
 						<div class="flex gap-2 items-center box-border">
@@ -216,10 +318,16 @@
 						<p class="text-white">63&deg;</p>
 					</div>
 				</div>
+				<!-- Hourly forecast ends [Project ends] -->
+
 			</div>
+
 		</div>
+
+		<!-- The 'No result' state -->
+		<h1 class="text-white font-medium text-center mt-8 text-lg hidden">No search result found!</h1>
+
 	</main>
-	
 
 </body>
 </html>

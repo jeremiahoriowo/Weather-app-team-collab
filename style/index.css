@@ -474,6 +474,11 @@
     outline-offset: 2px;
     outline-color:#4657d7;
   }
+
+  .active-day {
+    background-color: #3c3b5d;
+  }
+  
 }
 @property --tw-scale-x {
   syntax: "*";
