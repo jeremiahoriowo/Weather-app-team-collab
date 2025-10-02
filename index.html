@@ -40,11 +40,11 @@
 					<div class="flex flex-col border-b border-b-gray-600">
 						<p class="text-sm text-gray-400 mb-1 pl-1">Temperature</p>
 						<div class="flex flex-col gap-0.5">
-							<button class="flex items-center justify-between w-full gap-2 py-2 px-2.5 mb-1 bg-[#3c3b5d] rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75] hover:rounded-md">
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-2.5 mb-1 rounded-md unit-hovers active-unit" id="celcius" data-temps="Celcius">
 								<p class="self-start text-md font-medium text-white">Celcius (&deg;C)</p>
 								<img src="assets/images/icon-checkmark.svg">
 							</button>
-							<button class="flex items-center justify-between w-full gap-2 py-2 px-2.5 mb-2 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75] hover:rounded-md">
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-2.5 mb-2 rounded-md unit-hovers" id="fahrenheit" data-temps="Fahrenheit">
 								<p class="self-start text-md font-medium text-white">Fahrenheit (&deg;F)</p>
 								<img src="assets/images/icon-checkmark.svg" class="hidden">
 							</button>
@@ -54,11 +54,11 @@
 					<div class="flex flex-col border-b border-b-gray-600">
 						<p class="text-sm text-gray-400 mb-1 pl-1">Wind Speed</p>
 						<div class="flex flex-col gap-0.5">
-							<button class="flex items-center justify-between w-full gap-2 rounded-md py-2 px-2.5 mb-1 bg-[#3c3b5d]  hover:cursor-pointer">
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-2.5 mb-1 rounded-md unit-hovers active-unit" data-wind-speed="km">
 								<p class="self-start text-md font-medium text-gray-100">km/h</p>
 								<img src="assets/images/icon-checkmark.svg">
 							</button>
-							<button class="flex items-center justify-between w-full gap-2 py-1.5 px-3 mb-2 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75]">
+							<button class="flex items-center justify-between w-full gap-2 py-1.5 px-3 mb-2 rounded-md unit-hovers" data-wind-speed="m">
 								<p class="self-start text-md font-medium text-gray-100">mph</p>
 								<img src="assets/images/icon-checkmark.svg" class="hidden">
 							</button>
@@ -68,11 +68,11 @@
 					 <div class="flex flex-col">
 						<p class="text-sm text-gray-400 mb-1 pl-1">Precipation</p>
 						<div class="flex flex-col gap-0.5">
-							<button class="flex items-center justify-between w-full gap-2 rounded-md py-2 px-2.5 mb-1 bg-[#3c3b5d]  hover:cursor-pointer">
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-2.5 mb-1 rounded-md unit-hovers active-unit"  data-precipitate="mm">
 								<p class="self-start text-md font-medium text-gray-100">Millimeters (mm)</p>
 								<img src="assets/images/icon-checkmark.svg">
 							</button>
-							<button class="flex items-center justify-between w-full gap-2 py-1.5 px-3 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75]">
+							<button class="flex items-center justify-between w-full gap-2 py-1.5 px-3 rounded-md unit-hovers" data-precipitate="in">
 								<p class="self-start text-md font-medium text-gray-100">Inches (In)</p>
 								<img src="assets/images/icon-checkmark.svg" class="hidden">
 							</button>
@@ -86,17 +86,19 @@
 
 	</header>
 
+	<!-- <div class="text-white text-center active-day hidden" id="new-text">I AM SO HAPPY TODAY</div> -->
+
 	<!-- The Main section of the page -->
 	<main class="md:px-20 font-['DM-sans'] flex flex-col px-8 mt-10">
 		<h1 class="text-white text-5xl m-auto text-center font-[Bricolage]">How's the sky looking today?</h1>
 
 		<!-- The input field on the Hero view -->
 		<form class="flex sm:flex-row flex-col items-center justify-center gap-2.5 mt-10">
-			<div class="flex flex-col relative w-full">
+			<div class="flex flex-col relative w-full md:w-[45%]">
 
 				<div class="flex items-center gap-2.5 w-full max-sm:w-full bg-[#25253f] peer-[focus]: rounded-lg px-4 h-11">
 					<img src="assets/images/icon-search.svg" class="h-4">
-					<input type="text" placeholder="Search for a place" class="text-sm text-white text-[100%] outline-none bg-transparent focus:bg-[] w-full group h-full max-sm:focus:py-1 sm:flex-1">
+					<input type="text" placeholder="Search for a place" class="text-sm text-white text-[100%] outline-none bg-transparent w-full h-full max-sm:focus:py-1 sm:flex-1">
 				</div>
 				
 				<!-- Search suggestion box -->
@@ -226,37 +228,38 @@
 					<p class="text-lg font-semibold text-white">Hourly forecast</p>
 
 					<div class="flex flex-col relative">
-						<button class="cursor-pointer flex items-center text-sm gap-2 px-4 py-2 rounded-md bg-[#3c3b5d]" id="js-day-dropdown-button" >
-							<p class="text-white" id="selected-day">-</p>
+						<button class="cursor-pointer flex items-center text-sm gap-2 px-4 py-2 rounded-md bg-[#3c3b5d]" id="js-day-dropdown-button">
+							<p class="text-white" id="selected-day">Monday</p>
 							<img class="h-2" src="assets/images/icon-dropdown.svg">
 						</button>
 
 						<!-- The Day dropdown -->
 						<div class="flex flex-col w-[240px] p-2.5 gap-1.5 rounded-lg absolute top-[50px] right-[0px] bg-[#25253f] border border-gray-700 z-50 hidden" id="js-day-dropdown">
 
-							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75] hover:rounded-md" id="specific-day">
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md  unit-hovers" id="specific-day">
 								<p class="self-start text-md font-medium text-white">Monday</p>
 							</button>
-							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75] hover:rounded-md bg-[#3c3b5d]" id="specific-day">
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md active-unit unit-hovers" id="specific-day">
 								<p class="self-start text-md font-medium text-white">Tuesday</p>
 							</button>
-							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75] hover:rounded-md" id="specific-day">
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md unit-hovers" id="specific-day">
 								<p class="self-start text-md font-medium text-white">Wednesday</p>
 							</button>
-							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75] hover:rounded-md" id="specific-day">
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md unit-hovers" id="specific-day">
 								<p class="self-start text-md font-medium text-white">Thursday</p>
 							</button>
-							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75] hover:rounded-md" id="specific-day">
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md unit-hovers" id="specific-day">
 								<p class="self-start text-md font-medium text-white">Friday</p>
 							</button>
-							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75] hover:rounded-md" id="specific-day">
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md unit-hovers" id="specific-day">
 								<p class="self-start text-md font-medium text-white">Saturday</p>
 							</button>
-							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md hover:cursor-pointer hover:bg-[#3c3b5d75] hover:rounded-md" id="specific-day">
+							<button class="flex items-center justify-between w-full gap-2 py-2 px-4 mb-1 rounded-md unit-hovers" id="specific-day">
 								<p class="self-start text-md font-medium text-white">Sunday</p>
 							</button>
 						</div>
 					</div>
+
 				</div>
 
 				<!-- The Day hourly forecast -->
@@ -319,21 +322,20 @@
 					</div>
 				</div>
 				<!-- Hourly forecast ends [Project ends] -->
-
 			</div>
 
 		</div>
 
 		<!-- The 'No result' state -->
-		<h1 class="text-white font-medium text-center mt-8 text-lg hidden">No search result found!</h1>
+		<h1 class="text-white font-medium text-center mt-10 text-lg hidden">No search result found!</h1>
 
 	</main>
 	
 	<!-- API error state -->
-	<div class="flex flex-col gap-4 font-[DM-sans] mt-20 items-center hidden">
+	<div class="flex flex-col gap-4 px-10 font-[DM-sans] mt-20 items-center hidden">
 		<img src="assets/images/icon-error.svg" class="h-7">
 		<h1 class="mt-2 text-center text-4xl text-white font-[Bricolage]">Something went wrong</h1>
-		<p class="text-center text-gray-300 text-sm w-[380px] mt-1">We couldn't connect to the server (API error). Please try again in a few moments.</p>
+		<p class="text-center text-gray-300 text-sm md:w-[380px] mt-1">We couldn't connect to the server (API error). Please try again in a few moments.</p>
 		<button class="flex px-3 scale-[90%] py-2.5 gap-2 mt-2 rounded-md bg-[#25253f]">
 			<img src="assets/images/icon-loading.svg" class="animate-[rotate] animate-my-loader">
 			<p class="text-white text-xs font-medium">Retry</p>
