@@ -14,7 +14,7 @@ document.querySelectorAll('#js-search-suggestions').forEach(input => {
   input.onclick = () => {
     searchBar.value = input.textContent;
     submitSearch();
-  } 
+  }
 })
 
 searchBar.addEventListener('click', () => {
