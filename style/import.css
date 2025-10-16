@@ -42,8 +42,6 @@
   .our-borders {
     @apply border border-gray-700;
   }
-  .active-day {
-    background-color: #3c3b5d;
-  }
+  
 }
 

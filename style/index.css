@@ -476,10 +476,20 @@
   }
 
   .active-day {
-    background-color: #3c3b5d;
+    background-color: white;
   }
-  
+
+  .active-unit {
+    background-color: #3c3b5d;
+    border-radius: 6px;
+  }  
+  .unit-hovers:hover {
+    cursor: pointer; 
+    background-color: #3c3b5d75; 
+    border-radius: 6px;
+  }
 }
+
 @property --tw-scale-x {
   syntax: "*";
   inherits: false;
