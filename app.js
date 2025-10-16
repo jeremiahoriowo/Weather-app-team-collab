@@ -22,6 +22,7 @@ let state = {
 };
 
 console.log("Initial state configured.");
+console.log(encodeURIComponent("Hello I am"))
 
 // 3. DOM Element Selectors
 const dom = {
@@ -68,10 +69,12 @@ const dom = {
 
 console.log("DOM elements selected.");
 
+
+
 // 4. Geocoding: Converts city name to coordinates
 async function geocodeLocation(city) {
     // 1. Build the API URL with the search parameter
-    const url = `${GEOCODING_BASE_URL}?name=${encodeURIComponent(city)}&count=1&language=en&format=json`;
+    const url = `${GEOCODING_BASE_URL}?name=${encodeURIComponent(city)}&count=1&language=en&format=jsosn`;
     
     try {
         // 2. Wait for the API response (The "fetch")
@@ -127,6 +130,7 @@ async function fetchWeatherData(lat, lon) {
     });
 
     const url = `${FORECAST_BASE_URL}?${params.toString()}`;
+    console.log("The params is " + params.toString());
 
     try {
         const response = await fetch(url);
@@ -158,7 +162,7 @@ function renderWeather() {
 
     // Define symbols based on the current state units
     // This allows the units to update instantly when a unit button is clicked.
-    const tempSymbol = state.temp_unit === 'fahrenheit' ? '&deg;F' : '&deg;C';
+    const tempSymbol = state.temp_unit === "fahrenheit" ? "&deg;C" : "&deg;C";
     const windSymbol = state.wind_unit === 'mph' ? 'mph' : 'km/h';
     const precipSymbol = state.precip_unit === 'inch' ? 'in' : 'mm';
 
